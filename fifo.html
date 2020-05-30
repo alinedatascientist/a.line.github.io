@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIFO - UMA ABORDAGEM SIMPLES</title>
+<link href="css/multiColumnTemplate.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="primary_header">
+      <h1 class="title"> FIFO - UMA ABORDAGEM SIMPLES</h1>
+    </div>
+    <nav class="secondary_header" id="menu">
+      <ul>
+        <li><a href="index.html">O que é FIFO? </a></li>
+        <li><a href="vantagens_desvantagens.html">Vantagens/Desvantagens</a></li>
+        <li><a href="melhoramento.html">Melhoramento</a></li>
+        <li><a href="implementacao.html">Implementação</a></li>
+        <li><a href="http://www.deinfo.uepg.br/~alunoso/">Outros REA's</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section>
+    <h2 class="noDisplay">Main Content</h2>
+    <article class="left_article">
+      <h3>O que É fifo?</h3>
+      <p>Antes de entendermos o que é FIFO veremos um a breve introdução:</p>
+      <h3>INTRODUÇÃO</h3>
+      <p>“Em um sistema multiprogramado a memória é compartilhada por um certo número de processos, isto é, as páginas lógicas desses processos são alocadas a páginas físicas até que não haja mais memória RAM disponível. A partir desse ponto, para alocar mais memória o sistema operacional deve liberar uma página física selecionando, por consequência, uma página lógica associada a essa página física. A determinação da página a ser substituída é feita por um algoritmo de substituição de páginas.” - Oliveira R. S., Carissimi A. A., Toscani S. S. - 2004 Sistemas Operacionais.</p>
+      <h3>O que é FIFO?</h3>
+      <p>A estratégia de substituição FIFO </p>
+      <p>A estratégia FIFO (First In First Out - “ primeiro que entra, primeiro que sai”) funciona da seguinte maneira: substitui a página que esteve na memória por mais tempo.</p>
+      <p><aside class="right_article"><img src="imagens/fifo.jpg" alt="" width="400" height="200" class="placeholder"/> </aside></p>
+      <p>Para melhor exemplificar utilizaremos uma prateleira, como mostra a imagem ao lado, onde entram e saem itens, os itens que entraram primeiro, são os primeiros a sair.</p>
+      <p>Outro exemplo que pode ser usado é o da demanda de pedidos via e-comerce, os primeiros pedidos atendidos são os primeiros que chegam. Do mesmo modo acontece em filas de lotéricas, bancos e etc.</p>
+      <p>“Páginas que já estão na memória por um longo tempo provavelmente foram consultadas logo no início. Páginas recentes provavelmente serão consultadas em breve novamente. Essas últimas são, portanto, escolhas lógicas para permanecer na memória.” - Shay, Willian A. 1996. Sistemas Operacionais.</p>
+      <p>Segundo Tanenbaum, em seu livro Sistemas Operacionais Modernos, na página 161, &quot;O sistema operacional mantém uma lista de todas as páginas atuais na memória, com a página mais antiga na cabeça da lista e a página que chegou mais recentemente situada no final dessa lista. Na ocorrência de uma falta de página, a primeira página da lista é removida e a nova página é adicionada no final da lista.&quot;</p>
+      <p>É um algoritmo justo, pois quem faz a solicitação primeiro é atendido primeiro.</p>
+      <p>&nbsp;</p>
+    </article>
+  </section>
+  <div class="row"></div>
+  <div class="row blockDisplay"></div>
+  <div class="social">
+    <p class="social_icon"><a href="index.html"><img src="imagens/o que e_.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="vantagens_desvantagens.html"><img src="imagens/vantagens_desvantagens.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="melhoramento.html"><img src="imagens/melhoramento.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="implementacao.html"><img src="imagens/implementacao.jpg" width="100" alt="" class="thumbnail"/></a></p>
+  </div>
+  <footer class="secondary_header footer">
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    <img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+    <br />Este trabalho está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons - Atribuição  4.0 Internacional</a>
+  </footer>
+</div> 
+</body>
+</html>
