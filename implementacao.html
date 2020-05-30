@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIFO - UMA ABORDAGEM SIMPLES</title>
+<link href="css/multiColumnTemplate.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="primary_header">
+      <h1 class="title">FIFO - UMA ABORDAGEM SIMPLES</h1>
+    </div>
+    <nav class="secondary_header" id="menu">
+      <ul>
+        <li><a href="index.html">O que é FIFO? </a></li>
+        <li><a href="vantagens_desvantagens.html">Vantagens/Desvantagens</a></li>
+        <li><a href="melhoramento.html">Melhoramento</a></li>
+        <li><a href="implementacao.html">Implementação</a></li>
+        <li><a href="http://www.deinfo.uepg.br/~alunoso/">Outros REA's</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section>
+    <h2 class="noDisplay">Main Content</h2>
+    <article class="left_article">
+      <h3>implementaÇÃO</h3>
+      <p>“O sistema pode implementar essa estratégia mantendo uma fila. Os componentes dessa fila correspondem a páginas na memória. Sempre que o sistema armazena uma nova página virtual na memória, também armazena uma entrada corresponde no fim da fila. Se o sistema deve substituir uma página virtual, ele torna aquela representada pela primeira entrada da fila, removendo então a entrada. Há um trabalho maior do que aquele visto na substituição “descuidada”, mas pelo menos o método tenta prever quais páginas o processo acessará em seguida.” - Shay, Willian A. 1996. Sistemas Operacionais 
+      <p>A implementação do FIFO é simples e fácil. Basta manter uma fila de todas as páginas na memória. Elas são adicionadas ao final da fila quando lidas para a memória. A página que sofre *swap para o disco é sempre escolhida da frente da fila.</p>
+      <p>*swap: consiste em um tipo de cópia entre a memória principal (armazenamento primário) e o disco ( armazenamento secundário ou de apoio).<br>
+        <br>
+        Abaixo temos o código para implementação do FIFO :</p>
+      <div class="mw-highlight mw-content-ltr" dir="ltr">
+<pre><section id="codigo" class="four" >
+						<div class="container" >
+							<pre class="brush: js;">//FIFO<br>//Bibliotecas utilizadas<br>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>  <br>//Se o sistema for Windows adiciona determinada biblioteca, e definindo comandos de limpar e esperar<br>#ifdef WIN32<br>    #include &lt;windows.h&gt;<br>    #define LIMPA_TELA system(&quot;cls&quot;)<br>//Senão for Windows (se for Linux)<br>#else<br>    #include &lt;unistd.h&gt;<br>    #define LIMPA_TELA system(&quot;/usr/bin/clear&quot;)<br>#endif<br>  <br>//Espera 3 segundos<br>#define ESPERA sleep(3)<br>  <br>//Estrutura da lista que será criada<br>typedef struct Fila {<br>    int valor;<br>    struct Fila *proximo;<br>} Dados;<br>  <br>void insere();<br>void exclui();<br>void mostra();<br>void mostra_erro();<br>  <br>//Inicializando os dados da lista<br>Dados *principal = NULL;<br>Dados *final = NULL;<br>  <br>main(){<br>    char escolha;<br>    //Laço que irá mostrar o menu esperando uma opção (char)<br>    do {<br>        //Limpando a tela, e mostrando o menu<br>        LIMPA_TELA;<br>        printf(&quot;\nMétodo Fila\n\n&quot;);<br>        printf(&quot;Escolha uma opção: \n&quot;);<br>        printf(&quot;\t1 - Inserir valor na Fila\n&quot;);<br>        printf(&quot;\t2 - Remover valor da Fila\n&quot;);<br>        printf(&quot;\t3 - Mostrar valores da Fila\n&quot;);<br>        printf(&quot;\t9 - Sair\n\n&quot;);<br>        printf(&quot;Resposta: &quot;);<br>        scanf(&quot;%c&quot;, &amp;escolha);<br>        switch(escolha) {<br>            //Inserindo<br>            case '1':<br>                insere(); <br>                break;<br>            //Excluindo<br>            case '2':<br>                if(principal!=NULL){<br>                    exclui();<br>                }<br>                else{<br>                    printf(&quot;\nA Fila está vazia!\n&quot;);<br>                    getchar();<br>                }<br>                break;                <br>            //Mostrando<br>            case '3':<br>                if(principal!=NULL){<br>                    mostra();<br>                }<br>                else{<br>                    printf(&quot;\nA Fila está vazia!\n&quot;);<br>                    getchar();<br>                }<br>                break;                <br>            case '9':<br>                printf(&quot;\nObrigado por utilizar esse programa!\n&quot;);<br>                printf(&quot;------&gt;Terminal de Informação&lt;------\n\n&quot;);<br>                ESPERA;<br>                exit(0);<br>                break;<br>            //Se foi algum valor inválido<br>            default:<br>                mostra_erro();<br>                break;<br>        }<br>        //Impedindo sujeira na gravação da escolha<br>        getchar();<br>    }<br>    while (escolha &gt; 0); //Loop Infinito<br>}<br>  <br>//Inserção<br>void insere(){<br>    int val;<br>    LIMPA_TELA;<br>    printf(&quot;\nInserção: \n&quot;);<br>    printf(&quot;--------------------------------------\n&quot;);<br>    printf(&quot;Insira o valor a ser inserido: &quot;);<br>    scanf(&quot;%d&quot;,&amp;val);<br>    Dados *atual = (Dados*)malloc(sizeof(Dados));<br>    atual -&gt; valor = val;<br>    atual -&gt; proximo = NULL;<br>  <br>    //se o principal estiver vazio, será o atual<br>    if(principal == NULL){<br>        principal = final = atual;<br>    }<br>    //senão, o próximo valor que será o atual<br>    else{<br>        final-&gt;proximo=atual;<br>        final=atual;<br>    }<br>  <br>    printf(&quot;\nValor inserido!\n&quot;);<br>    printf(&quot;--------------------------------------&quot;);<br>    getchar();<br>}<br>  <br>//Exclusão<br>void exclui(){<br>    Dados *auxiliar;<br>    printf(&quot;\nExclusão: \n&quot;);<br>    printf(&quot;--------------------------------------\n&quot;);<br>    //o auxiliar será o próximo da principal<br>    auxiliar=principal-&gt;proximo;<br>    //limpando a principal<br>    free(principal);<br>    //a principal será a auxiliar<br>    principal=auxiliar;<br>    printf(&quot;\nValor excluido!\n&quot;);<br>    printf(&quot;--------------------------------------&quot;);<br>    getchar();<br>}<br>  <br>//Mostrando<br>void mostra(){<br>    int posicao=0;<br>    Dados *nova=principal;<br>    LIMPA_TELA;<br>    printf(&quot;\nMostrando valores: \n&quot;);<br>    printf(&quot;--------------------------------------\n&quot;);<br>    //laço de repetição para mostrar os valores<br>    for (; nova != NULL; nova = nova-&gt;proximo) {<br>        posicao++;<br>        printf(&quot;Posição %d, contém o valor %d\n&quot;, posicao, nova-&gt;valor);<br>    }<br>    printf(&quot;--------------------------------------&quot;);<br>    getchar();<br>}<br>  <br>//Mostrando erro de digitação<br>void mostra_erro(){<br>    LIMPA_TELA;<br>    printf(&quot;\nErro de Digitação: \n&quot;);<br>    printf(&quot;--------------------------------------\n&quot;);<br>    printf(&quot;\nDigite uma opção válida (pressione -Enter- p/ continuar)!\n\n&quot;);<br>    printf(&quot;--------------------------------------&quot;);<br>    getchar();<br>}</pre>
+
+</div>
+</section></pre></div></p>
+    <p><a href="code/fifo.c" download="FIFO.c" class="button"><strong>Baixar código</strong></a>&nbsp;</p>
+    </article>
+  </section>
+  <div class="row"></div>
+  <div class="row blockDisplay"></div>
+  <div class="social">
+    <p class="social_icon"><a href="index.html"><img src="imagens/o que e_.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="vantagens_desvantagens.html"><img src="imagens/vantagens_desvantagens.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="melhoramento.html"><img src="imagens/melhoramento.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="implementacao.html"><img src="imagens/implementacao.jpg" width="100" alt="" class="thumbnail"/></a></p>
+  </div>
+  <footer class="secondary_header footer">
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    <img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+    <br />Este trabalho está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons - Atribuição  4.0 Internacional</a>
+  </footer>
+</div> 
+</body>
+</html>

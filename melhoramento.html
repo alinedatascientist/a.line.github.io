@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIFO - UMA ABORDAGEM SIMPLES</title>
+<link href="css/multiColumnTemplate.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="primary_header">
+      <h1 class="title"> FIFO - UMA ABORDAGEM SIMPLES</h1>
+    </div>
+    <nav class="secondary_header" id="menu">
+      <ul>
+        <li><a href="index.html">O que é FIFO? </a></li>
+        <li><a href="vantagens_desvantagens.html">Vantagens/Desvantagens</a></li>
+        <li><a href="melhoramento.html">Melhoramento</a></li>
+        <li><a href="implementacao.html">Implementação</a></li>
+        <li><a href="http://www.deinfo.uepg.br/~alunoso/">Outros REA's</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section>
+    <h2 class="noDisplay">Main Content</h2>
+    <article class="left_article">
+      <h2>MELHORAMENTO</h2>
+      <h3>Algoritmo da Segunda Chance </h3>
+      <p>FIFO não faz concessão ao fato de que uma página pode ser carregada e utilizada continuamente por um longo tempo.</p>
+      <p>Para tratar isso, a idéia é olhar uma página na fila e, se ela tiver sido acessada desde a última vez em que foi verificada, é poupada se sofrer swap para o disco.</p>
+      <p>A implementação da Segunda Chance é uma simples extensão do FIFO. Seleciona-se a página da frente da fila, examina-se o bit de acesso. Se ele for 0, faz-se swap para o disco da página como em FIFO. Se ele for 1, é só limpar o o bit e reinserir a página no fim da fila. Note que isso dá a garantia de encontrar uma página de swap para o disco. E mesmo se começar com todas as páginas acessadas, apps uma verificação completa da fila, reexamina-se e primeira página outra vez e faz o swap para o disco. Nesse extremo caso ele funciona equivalente ao FIFO. </p>
+      <p>Linux usa segunda chance para substituição de página que são geralmente similares as do VMS do Windows NT. </p>
+      <p>&nbsp;</p>
+    </article>
+  </section>
+  <div class="row"></div>
+  <div class="row blockDisplay"></div>
+  <div class="social">
+    <p class="social_icon"><a href="index.html"><img src="imagens/o que e_.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="vantagens_desvantagens.html"><img src="imagens/vantagens_desvantagens.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="melhoramento.html"><img src="imagens/melhoramento.jpg" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="implementacao.html"><img src="imagens/implementacao.jpg" width="100" alt="" class="thumbnail"/></a></p>
+  </div>
+  <footer class="secondary_header footer">
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    <img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+    <br />Este trabalho está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons - Atribuição  4.0 Internacional</a>
+  </footer>
+</div> 
+</body>
+</html>
